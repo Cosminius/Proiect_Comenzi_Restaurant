@@ -1,0 +1,55 @@
+﻿@model IEnumerable<Product>
+
+@{
+    ViewBag.Title = "Produsele Romanian Gourmee";
+}
+
+@functions {
+    string GetModalId(Product prod) => "deleteModal" + prod.ProductId;
+}
+
+<h2>Meniul Romanian Gourmee</h2>
+<br />
+<a asp-action="AddEdit" asp-controller="Product" class="btn btn-primary">Creează un nou produs</a>
+
+<div class="row">
+@foreach(Product product in Model)
+{
+    <div class="col-md-4">
+        <div class="card" style="width: 18rem">
+            <img src="@Url.Content("~/images/" + product?.ImageUrl)" class="card-img-top fixed-image-height" alt="@product.Description" />
+            <div class="card-body">
+                <h5 class="card-title">@product.Name</h5>
+                <p class="card-text">@product.Description</p>
+                <p class="card-text">@product.Price lei</p>
+                <p class="card-text">Cantitate în stoc: @product.Stock</p>
+                <a class="btn btn-info" asp-controller="Product" asp-action="AddEdit" asp-route-id="@product.ProductId">
+                    <i class="bi bi-pencil-fill"> Edit</i>
+                </a>
+                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#@GetModalId(product)">
+                    <i class="bi bi-trash"> Elimina</i>
+                </button>
+
+               
+                <div class="modal fade" id="@GetModalId(product)" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Ești sigur că vrei să elimini @product.Name?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Anulează</button>
+                                <form asp-action="Delete" asp-controller="Product" method="post">
+                                    <input type="hidden" name="id" value="@product.ProductId" />
+                                    <button type="submit" class="btn btn-danger">Șterge</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+</div>

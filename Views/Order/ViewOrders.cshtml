@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Proiect_Medii_Restaurantul_Meu.Models.Order>
+@{
+    ViewData["Title"] = "My Orders";
+}
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID Comanda</th>
+            <th>Data Comanda</th>
+            <th>Cantitate Totala</th>
+            <th>Produse Comandate</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var order in Model)
+        {
+            <tr>
+                <td>@order.OrderId</td>
+                <td>@order.OrderDate.ToString("MM/dd/yyyy")</td>
+                <td>@order.TotalAmount lei</td>
+                <td>
+                    <ul>
+                        @foreach(var item in order.OrderItems)
+                        {
+                            <li>@item.Product.Name - @item.Quantity x @item.Price lei</li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Pagina Principală";
+}
+
+<div class="container text-center mt-5">
+    <h1 class="display-4">Bine ați venit la <span style="color: #8B0000;">Romanian Gourmee</span></h1>
+    <p class="lead">Cel mai bun restaurant cu specific românesc din lume</p>
+
+    <img src="/images/romanian-food.jpg" alt="Preparate Traditionale" class="img-fluid rounded mt-4" style="max-height: 400px;">
+
+    <div class="mt-5">
+        <a asp-controller="Order" asp-action="Create" class="btn btn-outline-danger btn-lg m-2">Vezi Meniul</a>
+        <a href="/Reservations" class="btn btn-outline-success btn-lg m-2">Rezervă o masă</a>
+    </div>
+
+    <section class="mt-5">
+        <h2>Despre Noi</h2>
+        <p>La Romanian Gourmee, aducem tradițiile culinare autentice în farfuria ta. De la sarmale și ciorbă de burtă până la cozonaci și plăcinte, fiecare preparat este gătit cu pasiune și ingrediente proaspete.</p>
+    </section>
+
+    <section class="mt-5">
+        <h2>Program de Funcționare</h2>
+        <ul class="list-unstyled">
+            <li>Luni - Vineri: 10:00 - 22:00</li>
+            <li>Sâmbătă - Duminică: 12:00 - 23:00</li>
+        </ul>
+    </section>
+</div>
